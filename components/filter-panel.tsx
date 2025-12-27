@@ -4,39 +4,44 @@ import { ChevronDown, ChevronUp, SlidersHorizontal, X } from "lucide-react"
 import { parseAsInteger, parseAsStringLiteral, useQueryStates } from "nuqs"
 import { useState } from "react"
 import { cn } from "@/lib/cn"
+import { ratingStats } from "@/lib/elo"
 
-// Elo filter options - same scale for dimensions and total (total = mean of dimension Elos)
+// Build filter options from actual data distribution
+// Round thresholds to nearest 50 for cleaner UX
+function roundToNearest(value: number, nearest: number): number {
+	return Math.round(value / nearest) * nearest
+}
+
 const ELO_OPTIONS = [
 	{ label: "Any", value: null },
-	{ label: "800+", value: 800 }, // Below average
-	{ label: "900+", value: 900 }, // Near average
-	{ label: "1000+", value: 1000 }, // Above average
-	{ label: "1100+", value: 1100 }, // Good
-	{ label: "1200+", value: 1200 }, // Excellent
-	{ label: "1300+", value: 1300 }, // Elite
+	{ label: `${roundToNearest(ratingStats.p10, 50)}+`, value: roundToNearest(ratingStats.p10, 50) },
+	{ label: `${roundToNearest(ratingStats.p25, 50)}+`, value: roundToNearest(ratingStats.p25, 50) },
+	{ label: `${roundToNearest(ratingStats.median, 50)}+`, value: roundToNearest(ratingStats.median, 50) },
+	{ label: `${roundToNearest(ratingStats.p75, 50)}+`, value: roundToNearest(ratingStats.p75, 50) },
+	{ label: `${roundToNearest(ratingStats.p90, 50)}+`, value: roundToNearest(ratingStats.p90, 50) },
 ]
 
 const SORT_OPTIONS = [
 	{ label: "Total Elo", value: "total" },
 	{ label: "Generativity", value: "gen" },
-	{ label: "Dev. Longevity", value: "dev" },
-	{ label: "Challenge", value: "chal" },
-	{ label: "Sensory", value: "sens" },
-	{ label: "Expression", value: "expr" },
-	{ label: "Social", value: "soc" },
-	{ label: "Sustainability", value: "sust" },
+	{ label: "Developmental Longevity", value: "dev" },
+	{ label: "Productive Challenge", value: "chal" },
+	{ label: "Sensory Engagement", value: "sens" },
+	{ label: "Expressive Range", value: "expr" },
+	{ label: "Social Affordance", value: "soc" },
+	{ label: "Practical Sustainability", value: "sust" },
 ] as const
 
 type SortField = (typeof SORT_OPTIONS)[number]["value"]
 
 const DIMENSIONS = [
 	{ key: "gen", label: "Generativity" },
-	{ key: "dev", label: "Dev. Longevity" },
-	{ key: "chal", label: "Challenge" },
-	{ key: "sens", label: "Sensory" },
-	{ key: "expr", label: "Expression" },
-	{ key: "soc", label: "Social" },
-	{ key: "sust", label: "Sustainability" },
+	{ key: "dev", label: "Developmental Longevity" },
+	{ key: "chal", label: "Productive Challenge" },
+	{ key: "sens", label: "Sensory Engagement" },
+	{ key: "expr", label: "Expressive Range" },
+	{ key: "soc", label: "Social Affordance" },
+	{ key: "sust", label: "Practical Sustainability" },
 ] as const
 
 export const filterParsers = {

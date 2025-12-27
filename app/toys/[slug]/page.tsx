@@ -6,7 +6,7 @@ import { RatingBar } from "@/components/rating-bar"
 import { ToyComparisonHistory } from "@/components/toy-comparison-history"
 import { cn } from "@/lib/cn"
 import { DIMENSIONS, type DimensionInfo, getExistingComparisons } from "@/lib/comparisons"
-import { formatWinProbability, getEloColor, getEloLabel } from "@/lib/elo"
+import { getEloColor } from "@/lib/elo"
 import { getAvailableOpponents, getToyComparisons } from "@/lib/toy-comparisons"
 import { getToys, type ToyRating } from "@/lib/toys"
 
@@ -14,11 +14,6 @@ interface PageProps {
 	params: Promise<{ slug: string }>
 }
 
-function getEloLabelStyle(elo: number): string {
-	if (elo >= 1200) return "bg-emerald-100 text-emerald-700"
-	if (elo >= 1000) return "bg-amber-100 text-amber-700"
-	return "bg-rose-100 text-rose-700"
-}
 
 function RatingSection({ rating }: { rating: ToyRating }) {
 	return (
@@ -28,27 +23,27 @@ function RatingSection({ rating }: { rating: ToyRating }) {
 				value={rating.generativity}
 			/>
 			<RatingBar
-				label="Dev. Longevity"
+				label="Developmental Longevity"
 				value={rating.developmentalLongevity}
 			/>
 			<RatingBar
-				label="Challenge"
+				label="Productive Challenge"
 				value={rating.productiveChallenge}
 			/>
 			<RatingBar
-				label="Sensory"
+				label="Sensory Engagement"
 				value={rating.sensoryEngagement}
 			/>
 			<RatingBar
-				label="Expression"
+				label="Expressive Range"
 				value={rating.expressiveRange}
 			/>
 			<RatingBar
-				label="Social"
+				label="Social Affordance"
 				value={rating.socialAffordance}
 			/>
 			<RatingBar
-				label="Sustainability"
+				label="Practical Sustainability"
 				value={rating.practicalSustainability}
 			/>
 		</div>
@@ -105,29 +100,16 @@ export default async function ToyPage({ params }: PageProps) {
 					</div>
 
 					{rating && (
-						<div className="flex flex-col items-center gap-2">
-							<div
-								className={cn(
-									"flex flex-col items-center justify-center",
-									"w-20 h-20 rounded-2xl",
-									"bg-gradient-to-br text-white shadow-lg",
-									getEloColor(rating.total),
-								)}
-							>
-								<span className="text-2xl font-bold leading-none">
-									{rating.total}
-								</span>
-								<span className="text-xs uppercase tracking-wider opacity-90 mt-0.5">
-									{formatWinProbability(rating.total)}
-								</span>
-							</div>
-							<span
-								className={cn(
-									"text-xs font-medium px-2 py-0.5 rounded-full",
-									getEloLabelStyle(rating.total),
-								)}
-							>
-								{getEloLabel(rating.total)}
+						<div
+							className={cn(
+								"flex items-center justify-center",
+								"w-20 h-20 rounded-2xl",
+								"bg-gradient-to-br text-white shadow-lg",
+								getEloColor(rating.total),
+							)}
+						>
+							<span className="text-2xl font-bold leading-none">
+								{rating.total}
 							</span>
 						</div>
 					)}

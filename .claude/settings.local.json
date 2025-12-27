@@ -2,7 +2,21 @@
   "permissions": {
     "allow": [
       "Skill(superpowers:brainstorming)",
-      "mcp__context7__resolve-library-id"
+      "mcp__context7__resolve-library-id",
+      "Bash(cat:*)",
+      "Bash(npx tsx:*)",
+      "mcp__beads__context",
+      "mcp__beads__create",
+      "mcp__beads__update",
+      "mcp__plugin_playwright_playwright__browser_navigate",
+      "Bash(npm install:*)",
+      "mcp__plugin_playwright_playwright__browser_take_screenshot",
+      "Bash(npm run build:*)",
+      "mcp__beads__close",
+      "mcp__plugin_playwright_playwright__browser_evaluate",
+      "Skill(utils:tailwind-ui)",
+      "mcp__plugin_playwright_playwright__browser_snapshot",
+      "Bash(node -e:*)"
     ]
   }
 }

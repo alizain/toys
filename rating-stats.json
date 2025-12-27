@@ -1,0 +1,32 @@
+{
+	"computed": "2025-12-27T21:09:21.397Z",
+	"count": 1560,
+	"dimensionAverages": {
+		"developmentalLongevity": 756,
+		"expressiveRange": 738,
+		"generativity": 700,
+		"practicalSustainability": 810,
+		"productiveChallenge": 741,
+		"sensoryEngagement": 690,
+		"socialAffordance": 772,
+		"total": 744
+	},
+	"max": 1548,
+	"mean": 744,
+	"median": 767,
+	"min": -309,
+	"p10": 301,
+	"p25": 510,
+	"p30": 572,
+	"p5": 169,
+	"p70": 950,
+	"p75": 996,
+	"p90": 1155,
+	"p95": 1243,
+	"tierCounts": {
+		"bottom": 36,
+		"middle": 123,
+		"top": 36
+	},
+	"toyCount": 195
+}

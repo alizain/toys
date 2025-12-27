@@ -1,5 +1,5 @@
 ---
-name: Ticket to Ride: First Journey
+name: "Ticket to Ride: First Journey"
 version: 1
 links:
   - https://boardgamegeek.com/boardgame/205125/ticket-to-ride-first-journey-us

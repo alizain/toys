@@ -18,27 +18,27 @@ function RatingSection({ rating }: { rating: ToyRating }) {
 				value={rating.generativity}
 			/>
 			<RatingBar
-				label="Dev. Longevity"
+				label="Developmental Longevity"
 				value={rating.developmentalLongevity}
 			/>
 			<RatingBar
-				label="Challenge"
+				label="Productive Challenge"
 				value={rating.productiveChallenge}
 			/>
 			<RatingBar
-				label="Sensory"
+				label="Sensory Engagement"
 				value={rating.sensoryEngagement}
 			/>
 			<RatingBar
-				label="Expression"
+				label="Expressive Range"
 				value={rating.expressiveRange}
 			/>
 			<RatingBar
-				label="Social"
+				label="Social Affordance"
 				value={rating.socialAffordance}
 			/>
 			<RatingBar
-				label="Sustainability"
+				label="Practical Sustainability"
 				value={rating.practicalSustainability}
 			/>
 		</div>

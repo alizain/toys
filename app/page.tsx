@@ -1,5 +1,7 @@
 import { Brush, Clock, Sparkles, Trophy } from "lucide-react"
+import Link from "next/link"
 import { ToysExplorer } from "@/components/toys-explorer"
+import { ratingStats } from "@/lib/elo"
 import { getToys } from "@/lib/toys"
 
 export const dynamic = "force-dynamic"
@@ -8,11 +10,11 @@ export const revalidate = 0
 export default async function HomePage() {
 	const toys = await getToys()
 
+	// All stats come from precomputed rating-stats.json
 	const stats = {
-		avgGenerativity:
-			toys.reduce((acc, t) => acc + (t.rating?.generativity || 0), 0) / toys.length,
-		excellent: toys.filter((t) => t.rating && t.rating.total >= 56).length,
-		total: toys.length,
+		avgGenerativity: ratingStats.dimensionAverages.generativity,
+		excellent: ratingStats.tierCounts.top,
+		total: ratingStats.toyCount,
 	}
 
 	return (
@@ -31,11 +33,53 @@ export default async function HomePage() {
 						<br />
 						<span className="text-amber-200">for Kids</span>
 					</h1>
-					<p className="text-xl text-purple-100 max-w-xl mb-8">
-						Every toy rated on 7 dimensions: generativity, developmental
-						longevity, challenge, sensory, expression, social, and
-						sustainability.
+					<p className="text-xl text-purple-100 max-w-xl mb-4">
+						Every toy rated on 7 dimensions:
 					</p>
+					<ul className="list-disc list-inside space-y-1 mb-8 text-purple-100">
+						<li>
+							<Link href="/dimensions#generativity" className="text-amber-200 hover:text-white transition-colors">
+								Generativity
+							</Link>
+						</li>
+						<li>
+							<Link href="/dimensions#developmental_longevity" className="text-amber-200 hover:text-white transition-colors">
+								Developmental Longevity
+							</Link>
+						</li>
+						<li>
+							<Link href="/dimensions#productive_challenge" className="text-amber-200 hover:text-white transition-colors">
+								Productive Challenge
+							</Link>
+						</li>
+						<li>
+							<Link href="/dimensions#sensory_engagement" className="text-amber-200 hover:text-white transition-colors">
+								Sensory Engagement
+							</Link>
+						</li>
+						<li>
+							<Link href="/dimensions#expressive_range" className="text-amber-200 hover:text-white transition-colors">
+								Expressive Range
+							</Link>
+						</li>
+						<li>
+							<Link href="/dimensions#social_affordance" className="text-amber-200 hover:text-white transition-colors">
+								Social Affordance
+							</Link>
+						</li>
+						<li>
+							<Link href="/dimensions#practical_sustainability" className="text-amber-200 hover:text-white transition-colors">
+								Practical Sustainability
+							</Link>
+						</li>
+					</ul>
+					<Link
+						href="/dimensions"
+						className="inline-flex items-center gap-2 text-amber-200 hover:text-white transition-colors mb-8"
+					>
+						Learn about our rating dimensions
+						<span aria-hidden="true">→</span>
+					</Link>
 
 					{/* Stats */}
 					<div className="flex flex-wrap gap-6">
@@ -63,7 +107,7 @@ export default async function HomePage() {
 							<Brush className="w-5 h-5 text-rose-300" />
 							<div>
 								<div className="text-2xl font-bold">
-									{stats.avgGenerativity.toFixed(1)}
+									{stats.avgGenerativity}
 								</div>
 								<div className="text-sm text-purple-200">
 									Avg Generativity
@@ -79,15 +123,15 @@ export default async function HomePage() {
 				<div className="flex flex-wrap items-center justify-center gap-6 text-sm">
 					<div className="flex items-center gap-2">
 						<div className="w-4 h-4 rounded-full bg-emerald-500" />
-						<span className="text-muted-foreground">Excellent (56-70)</span>
+						<span className="text-muted-foreground">Top 30% ({ratingStats.p70}+)</span>
 					</div>
 					<div className="flex items-center gap-2">
 						<div className="w-4 h-4 rounded-full bg-amber-500" />
-						<span className="text-muted-foreground">Great (49-55)</span>
+						<span className="text-muted-foreground">Middle 40% ({ratingStats.p30}-{ratingStats.p70 - 1})</span>
 					</div>
 					<div className="flex items-center gap-2">
 						<div className="w-4 h-4 rounded-full bg-rose-400" />
-						<span className="text-muted-foreground">Good (42-48)</span>
+						<span className="text-muted-foreground">Bottom 30% (&lt;{ratingStats.p30})</span>
 					</div>
 				</div>
 			</div>
@@ -109,9 +153,7 @@ export default async function HomePage() {
 			{/* Footer */}
 			<footer className="border-t border-border py-8 text-center text-sm text-muted-foreground">
 				<p>
-					Toys are rated on a scale of 1-10 for each of 7 dimensions.
-					<br />
-					Total score is out of 70.
+					Toys are ranked using Elo ratings derived from pairwise comparisons across 7 dimensions.
 				</p>
 			</footer>
 		</div>

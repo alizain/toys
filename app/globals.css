@@ -1,6 +1,7 @@
 /* biome-ignore-all lint/complexity/noImportantStyles: Required for accessibility - must override all animations */
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 

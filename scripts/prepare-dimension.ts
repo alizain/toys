@@ -481,11 +481,7 @@ async function main() {
 
 				if (!bestPair) continue
 
-				const key = getComparisonKey(
-					selected.dimension,
-					bestPair.toyA,
-					bestPair.toyB,
-				)
+				const key = getComparisonKey(selected.dimension, bestPair.toyA, bestPair.toyB)
 				if (existingKeys.has(key)) continue
 
 				selectedPairs.push(bestPair)

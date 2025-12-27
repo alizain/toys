@@ -51,8 +51,7 @@ export const DIMENSIONS: DimensionInfo[] = [
 				score: 7,
 			},
 			{
-				description:
-					"Infinite possibilities (magna-tiles, wooden blocks, loose parts)",
+				description: "Infinite possibilities (magna-tiles, wooden blocks, loose parts)",
 				score: 10,
 			},
 		],
@@ -139,8 +138,7 @@ export const DIMENSIONS: DimensionInfo[] = [
 			},
 			{ description: "Rich multi-sensory, some natural materials", score: 7 },
 			{
-				description:
-					"Deeply tactile, natural materials (wood, metal, fabric, ceramic)",
+				description: "Deeply tactile, natural materials (wood, metal, fabric, ceramic)",
 				score: 10,
 			},
 		],
@@ -160,8 +158,7 @@ export const DIMENSIONS: DimensionInfo[] = [
 		scoringGuide: [
 			{ description: "No expressive function (consumables, single-use)", score: 1 },
 			{
-				description:
-					"Single mode of expression (purely visual or purely kinesthetic)",
+				description: "Single mode of expression (purely visual or purely kinesthetic)",
 				score: 3,
 			},
 			{ description: "2-3 expressive modes (building + storytelling)", score: 5 },
@@ -170,8 +167,7 @@ export const DIMENSIONS: DimensionInfo[] = [
 				score: 7,
 			},
 			{
-				description:
-					"Full symbolic range (can represent any idea, story, emotion)",
+				description: "Full symbolic range (can represent any idea, story, emotion)",
 				score: 10,
 			},
 		],
@@ -233,8 +229,7 @@ export const DIMENSIONS: DimensionInfo[] = [
 			{ description: "Neutral (reasonable cleanup, decent durability)", score: 5 },
 			{ description: "Pleasant (quick cleanup, durable, stores well)", score: 7 },
 			{
-				description:
-					"Effortless (few pieces, elegant storage, lasts generations)",
+				description: "Effortless (few pieces, elegant storage, lasts generations)",
 				score: 10,
 			},
 		],

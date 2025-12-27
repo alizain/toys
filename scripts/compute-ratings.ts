@@ -321,10 +321,7 @@ function computeBradleyTerryScores(
 
 		for (const toy of allToys) {
 			const normalized = (newScores.get(toy) ?? 1.0) * scale
-			maxChange = Math.max(
-				maxChange,
-				Math.abs(normalized - (scores.get(toy) ?? 1.0)),
-			)
+			maxChange = Math.max(maxChange, Math.abs(normalized - (scores.get(toy) ?? 1.0)))
 			scores.set(toy, normalized)
 		}
 
@@ -574,7 +571,8 @@ function computeRatingStats(allValues: number[], toyRatings: ToyRatings[]): Rati
 	// Compute per-dimension averages
 	const dimensionAverages = {
 		developmentalLongevity: Math.round(
-			toyRatings.reduce((acc, t) => acc + t.developmentalLongevity, 0) / toyRatings.length,
+			toyRatings.reduce((acc, t) => acc + t.developmentalLongevity, 0) /
+				toyRatings.length,
 		),
 		expressiveRange: Math.round(
 			toyRatings.reduce((acc, t) => acc + t.expressiveRange, 0) / toyRatings.length,
@@ -583,7 +581,8 @@ function computeRatingStats(allValues: number[], toyRatings: ToyRatings[]): Rati
 			toyRatings.reduce((acc, t) => acc + t.generativity, 0) / toyRatings.length,
 		),
 		practicalSustainability: Math.round(
-			toyRatings.reduce((acc, t) => acc + t.practicalSustainability, 0) / toyRatings.length,
+			toyRatings.reduce((acc, t) => acc + t.practicalSustainability, 0) /
+				toyRatings.length,
 		),
 		productiveChallenge: Math.round(
 			toyRatings.reduce((acc, t) => acc + t.productiveChallenge, 0) / toyRatings.length,
@@ -607,10 +606,10 @@ function computeRatingStats(allValues: number[], toyRatings: ToyRatings[]): Rati
 		mean: Math.round(sum / sorted.length),
 		median: Math.round(percentile(sorted, 50)),
 		min: sorted[0],
+		p5: Math.round(percentile(sorted, 5)),
 		p10: Math.round(percentile(sorted, 10)),
 		p25: Math.round(percentile(sorted, 25)),
 		p30,
-		p5: Math.round(percentile(sorted, 5)),
 		p70,
 		p75: Math.round(percentile(sorted, 75)),
 		p90: Math.round(percentile(sorted, 90)),
@@ -718,21 +717,23 @@ function main() {
 	const ratingStats = computeRatingStats(allRatingValues, toyRatings)
 	fs.writeFileSync(RATING_STATS_FILE, JSON.stringify(ratingStats, null, "\t"))
 	console.log(`Wrote rating stats to ${RATING_STATS_FILE}`)
-	console.log(`  Distribution: min=${ratingStats.min} p30=${ratingStats.p30} median=${ratingStats.median} p70=${ratingStats.p70} max=${ratingStats.max}`)
-	console.log(`  Tiers: top=${ratingStats.tierCounts.top} middle=${ratingStats.tierCounts.middle} bottom=${ratingStats.tierCounts.bottom}`)
+	console.log(
+		`  Distribution: min=${ratingStats.min} p30=${ratingStats.p30} median=${ratingStats.median} p70=${ratingStats.p70} max=${ratingStats.max}`,
+	)
+	console.log(
+		`  Tiers: top=${ratingStats.tierCounts.top} middle=${ratingStats.tierCounts.middle} bottom=${ratingStats.tierCounts.bottom}`,
+	)
 
 	// Print some stats
 	const sortedByTotal = allToys
 		.map((toy) => {
 			const gen = dimensionScores.get("generativity")?.get(toy) ?? ELO_BASE
-			const dev =
-				dimensionScores.get("developmental_longevity")?.get(toy) ?? ELO_BASE
+			const dev = dimensionScores.get("developmental_longevity")?.get(toy) ?? ELO_BASE
 			const prod = dimensionScores.get("productive_challenge")?.get(toy) ?? ELO_BASE
 			const sens = dimensionScores.get("sensory_engagement")?.get(toy) ?? ELO_BASE
 			const expr = dimensionScores.get("expressive_range")?.get(toy) ?? ELO_BASE
 			const soc = dimensionScores.get("social_affordance")?.get(toy) ?? ELO_BASE
-			const prac =
-				dimensionScores.get("practical_sustainability")?.get(toy) ?? ELO_BASE
+			const prac = dimensionScores.get("practical_sustainability")?.get(toy) ?? ELO_BASE
 			// Mean of 7 dimension Elos
 			const total = Math.round((gen + dev + prod + sens + expr + soc + prac) / 7)
 			return { total, toy }

@@ -44,22 +44,16 @@ export function ToysExplorer({ toys }: ToysExplorerProps) {
 		result = result.filter((toy) => {
 			if (!toy.rating) return true
 
-			if (filters.gen !== null && toy.rating.generativity < filters.gen)
-				return false
+			if (filters.gen !== null && toy.rating.generativity < filters.gen) return false
 			if (filters.dev !== null && toy.rating.developmentalLongevity < filters.dev)
 				return false
 			if (filters.chal !== null && toy.rating.productiveChallenge < filters.chal)
 				return false
 			if (filters.sens !== null && toy.rating.sensoryEngagement < filters.sens)
 				return false
-			if (filters.expr !== null && toy.rating.expressiveRange < filters.expr)
-				return false
-			if (filters.soc !== null && toy.rating.socialAffordance < filters.soc)
-				return false
-			if (
-				filters.sust !== null &&
-				toy.rating.practicalSustainability < filters.sust
-			)
+			if (filters.expr !== null && toy.rating.expressiveRange < filters.expr) return false
+			if (filters.soc !== null && toy.rating.socialAffordance < filters.soc) return false
+			if (filters.sust !== null && toy.rating.practicalSustainability < filters.sust)
 				return false
 			if (filters.total !== null && toy.rating.total < filters.total) return false
 
@@ -101,9 +95,7 @@ export function ToysExplorer({ toys }: ToysExplorerProps) {
 			{/* Toys Grid */}
 			{filteredAndSortedToys.length === 0 ? (
 				<div className="text-center py-16 bg-muted/30 rounded-2xl">
-					<p className="text-muted-foreground text-lg">
-						No toys match your filters
-					</p>
+					<p className="text-muted-foreground text-lg">No toys match your filters</p>
 					<p className="text-sm text-muted-foreground mt-1">
 						Try adjusting or clearing some filters
 					</p>

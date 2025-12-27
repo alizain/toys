@@ -30,11 +30,7 @@ export function getToyComparisons(
 			const opponent = comparison.toyA === slug ? comparison.toyB : comparison.toyA
 			const opponentName = toyNameBySlug.get(opponent) ?? opponent
 			const result: ToyComparison["result"] =
-				comparison.winner === "tie"
-					? "tie"
-					: comparison.winner === slug
-						? "win"
-						: "loss"
+				comparison.winner === "tie" ? "tie" : comparison.winner === slug ? "win" : "loss"
 
 			return {
 				dimension: comparison.dimension,

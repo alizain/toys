@@ -1,4 +1,4 @@
-/* biome-ignore-all lint/complexity/noImportantStyles: Required for accessibility - must override all animations */
+/* biome-ignore lint/complexity/noImportantStyles: Required for accessibility - must override all animations */
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -72,7 +72,7 @@ h6 {
 	font-family: var(--font-heading);
 }
 
-/* biome-ignore-all lint/complexity/noImportantStyles: Required for accessibility - must override all animations */
+/* biome-ignore lint/complexity/noImportantStyles: Required for accessibility - must override all animations */
 @media (prefers-reduced-motion: reduce) {
 	*,
 	*::before,

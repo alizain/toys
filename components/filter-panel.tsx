@@ -14,11 +14,26 @@ function roundToNearest(value: number, nearest: number): number {
 
 const ELO_OPTIONS = [
 	{ label: "Any", value: null },
-	{ label: `${roundToNearest(ratingStats.p10, 50)}+`, value: roundToNearest(ratingStats.p10, 50) },
-	{ label: `${roundToNearest(ratingStats.p25, 50)}+`, value: roundToNearest(ratingStats.p25, 50) },
-	{ label: `${roundToNearest(ratingStats.median, 50)}+`, value: roundToNearest(ratingStats.median, 50) },
-	{ label: `${roundToNearest(ratingStats.p75, 50)}+`, value: roundToNearest(ratingStats.p75, 50) },
-	{ label: `${roundToNearest(ratingStats.p90, 50)}+`, value: roundToNearest(ratingStats.p90, 50) },
+	{
+		label: `${roundToNearest(ratingStats.p10, 50)}+`,
+		value: roundToNearest(ratingStats.p10, 50),
+	},
+	{
+		label: `${roundToNearest(ratingStats.p25, 50)}+`,
+		value: roundToNearest(ratingStats.p25, 50),
+	},
+	{
+		label: `${roundToNearest(ratingStats.median, 50)}+`,
+		value: roundToNearest(ratingStats.median, 50),
+	},
+	{
+		label: `${roundToNearest(ratingStats.p75, 50)}+`,
+		value: roundToNearest(ratingStats.p75, 50),
+	},
+	{
+		label: `${roundToNearest(ratingStats.p90, 50)}+`,
+		value: roundToNearest(ratingStats.p90, 50),
+	},
 ]
 
 const SORT_OPTIONS = [
@@ -125,9 +140,7 @@ export function FilterPanel() {
 					<select
 						id="sort-select"
 						value={filters.sort}
-						onChange={(e) =>
-							setFilters({ sort: e.target.value as SortField })
-						}
+						onChange={(e) => setFilters({ sort: e.target.value as SortField })}
 						className="text-sm bg-background border border-border rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-primary/50"
 					>
 						{SORT_OPTIONS.map((opt) => (
@@ -180,16 +193,13 @@ export function FilterPanel() {
 									value={filters[dim.key] ?? ""}
 									onChange={(e) =>
 										setFilters({
-											[dim.key]: e.target.value
-												? Number(e.target.value)
-												: null,
+											[dim.key]: e.target.value ? Number(e.target.value) : null,
 										})
 									}
 									className={cn(
 										"w-full text-sm bg-background border border-border rounded-lg px-3 py-2",
 										"focus:outline-none focus:ring-2 focus:ring-primary/50",
-										filters[dim.key] !== null &&
-											"border-primary/50 bg-primary/5",
+										filters[dim.key] !== null && "border-primary/50 bg-primary/5",
 									)}
 								>
 									{ELO_OPTIONS.map((opt) => (
@@ -217,16 +227,13 @@ export function FilterPanel() {
 								value={filters.total ?? ""}
 								onChange={(e) =>
 									setFilters({
-										total: e.target.value
-											? Number(e.target.value)
-											: null,
+										total: e.target.value ? Number(e.target.value) : null,
 									})
 								}
 								className={cn(
 									"w-full text-sm bg-background border border-border rounded-lg px-3 py-2",
 									"focus:outline-none focus:ring-2 focus:ring-primary/50",
-									filters.total !== null &&
-										"border-primary/50 bg-primary/5",
+									filters.total !== null && "border-primary/50 bg-primary/5",
 								)}
 							>
 								{ELO_OPTIONS.map((opt) => (

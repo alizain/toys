@@ -103,17 +103,13 @@ export function ComparisonTable({ comparisons, totalComparisons }: ComparisonTab
 							className="flex flex-col md:table-row md:transition-colors md:hover:bg-muted/30"
 						>
 							<td className="px-4 pt-4 md:py-4 md:pt-4">
-								<p className="text-xs text-muted-foreground md:hidden">
-									Dimension
-								</p>
+								<p className="text-xs text-muted-foreground md:hidden">Dimension</p>
 								<p className="font-medium text-foreground">
 									{getDimensionLabel(comparison.dimension)}
 								</p>
 							</td>
 							<td className="px-4 pt-2 md:py-4">
-								<p className="text-xs text-muted-foreground md:hidden">
-									Opponent
-								</p>
+								<p className="text-xs text-muted-foreground md:hidden">Opponent</p>
 								<Link
 									href={`/toys/${comparison.opponent}`}
 									className="text-primary hover:underline"
@@ -122,15 +118,11 @@ export function ComparisonTable({ comparisons, totalComparisons }: ComparisonTab
 								</Link>
 							</td>
 							<td className="px-4 pt-2 md:py-4">
-								<p className="text-xs text-muted-foreground md:hidden">
-									Result
-								</p>
+								<p className="text-xs text-muted-foreground md:hidden">Result</p>
 								<ResultBadge result={comparison.result} />
 							</td>
 							<td className="px-4 pt-2 pb-4 md:py-4">
-								<p className="text-xs text-muted-foreground md:hidden">
-									Date
-								</p>
+								<p className="text-xs text-muted-foreground md:hidden">Date</p>
 								<span className="text-sm text-muted-foreground">
 									{formatTimestamp(comparison.timestamp)}
 								</span>

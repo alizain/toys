@@ -105,8 +105,7 @@ export async function getToys(): Promise<Toy[]> {
 	const toyFolders = fs.readdirSync(TOYS_FOLDER).filter((f) => {
 		const toyPath = path.join(TOYS_FOLDER, f)
 		return (
-			fs.statSync(toyPath).isDirectory() &&
-			fs.existsSync(path.join(toyPath, "index.md"))
+			fs.statSync(toyPath).isDirectory() && fs.existsSync(path.join(toyPath, "index.md"))
 		)
 	})
 
@@ -158,7 +157,7 @@ export async function getToys(): Promise<Toy[]> {
 
 				return {
 					content: lines.slice(contentStart).join("\n").trim(),
-					frontmatter: { name, link, version },
+					frontmatter: { link, name, version },
 					link,
 					name,
 					rating,

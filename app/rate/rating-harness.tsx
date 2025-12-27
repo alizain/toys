@@ -74,9 +74,7 @@ function ToyCard({
 					{label}
 				</div>
 
-				<h2 className="text-xl font-bold text-purple-900 pr-14 mb-3">
-					{toy.name}
-				</h2>
+				<h2 className="text-xl font-bold text-purple-900 pr-14 mb-3">{toy.name}</h2>
 
 				{toy.link && (
 					<a
@@ -115,18 +113,14 @@ function DimensionPanel({ dimension }: { dimension: DimensionInfo }) {
 				<h1 className="text-2xl md:text-3xl font-bold text-purple-900 mb-2">
 					{dimension.question}
 				</h1>
-				<p className="text-purple-600 text-sm leading-relaxed">
-					{dimension.description}
-				</p>
+				<p className="text-purple-600 text-sm leading-relaxed">{dimension.description}</p>
 			</div>
 
 			<div className="mt-6 pt-6 border-t border-purple-200">
 				<div className="grid md:grid-cols-2 gap-6">
 					{/* Key Questions */}
 					<div>
-						<h3 className="font-semibold text-purple-900 mb-3">
-							Key Questions
-						</h3>
+						<h3 className="font-semibold text-purple-900 mb-3">Key Questions</h3>
 						<ul className="space-y-2">
 							{dimension.keyQuestions.map((q) => (
 								<li
@@ -142,9 +136,7 @@ function DimensionPanel({ dimension }: { dimension: DimensionInfo }) {
 
 					{/* Scoring Guide */}
 					<div>
-						<h3 className="font-semibold text-purple-900 mb-3">
-							Scoring Guide
-						</h3>
+						<h3 className="font-semibold text-purple-900 mb-3">Scoring Guide</h3>
 						<div className="space-y-2">
 							{dimension.scoringGuide.map((guide) => (
 								<div
@@ -167,9 +159,7 @@ function DimensionPanel({ dimension }: { dimension: DimensionInfo }) {
 									>
 										{guide.score}
 									</span>
-									<span className="text-gray-700">
-										{guide.description}
-									</span>
+									<span className="text-gray-700">{guide.description}</span>
 								</div>
 							))}
 						</div>
@@ -270,9 +260,7 @@ export function RatingHarness({ toys, comparedPairs, dimensions }: RatingHarness
 					<div className="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
 						<Check className="w-10 h-10 text-white" />
 					</div>
-					<h1 className="text-3xl font-bold text-emerald-800 mb-2">
-						All Done!
-					</h1>
+					<h1 className="text-3xl font-bold text-emerald-800 mb-2">All Done!</h1>
 					<p className="text-emerald-600 mb-6">
 						You've compared all {progress.toLocaleString()} pairs.
 					</p>

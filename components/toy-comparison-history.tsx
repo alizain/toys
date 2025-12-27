@@ -49,8 +49,7 @@ export function ToyComparisonHistory({
 	const filteredComparisons = useMemo(() => {
 		return comparisons.filter((comparison) => {
 			const opponentMatch =
-				filters.opponents.length === 0 ||
-				filters.opponents.includes(comparison.opponent)
+				filters.opponents.length === 0 || filters.opponents.includes(comparison.opponent)
 			const dimensionMatch =
 				filters.dims.length === 0 || filters.dims.includes(comparison.dimension)
 
@@ -67,12 +66,9 @@ export function ToyComparisonHistory({
 		<section className="space-y-6">
 			<div className="flex flex-wrap items-center justify-between gap-3">
 				<div>
-					<h2 className="text-2xl font-bold text-foreground">
-						Comparison History
-					</h2>
+					<h2 className="text-2xl font-bold text-foreground">Comparison History</h2>
 					<p className="text-sm text-muted-foreground">
-						Showing {filteredComparisons.length} of {comparisons.length}{" "}
-						comparisons
+						Showing {filteredComparisons.length} of {comparisons.length} comparisons
 					</p>
 				</div>
 			</div>

@@ -15,7 +15,6 @@ interface PageProps {
 	params: Promise<{ slug: string }>
 }
 
-
 function RatingSection({ rating }: { rating: ToyRating }) {
 	return (
 		<div className="grid grid-cols-2 gap-x-8 gap-y-2">
@@ -84,9 +83,7 @@ export default async function ToyPage({ params }: PageProps) {
 				{/* Header */}
 				<div className="flex items-start gap-6 mb-8">
 					<div className="flex-1">
-						<h1 className="text-4xl font-bold text-foreground mb-2">
-							{toy.name}
-						</h1>
+						<h1 className="text-4xl font-bold text-foreground mb-2">{toy.name}</h1>
 						{toy.link && (
 							<a
 								href={toy.link}
@@ -109,9 +106,7 @@ export default async function ToyPage({ params }: PageProps) {
 								getEloColor(rating.total),
 							)}
 						>
-							<span className="text-2xl font-bold leading-none">
-								{rating.total}
-							</span>
+							<span className="text-2xl font-bold leading-none">{rating.total}</span>
 						</div>
 					)}
 				</div>

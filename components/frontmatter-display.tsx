@@ -12,26 +12,24 @@ const SKIP_FIELDS = new Set(["name", "link", "version"])
 const FIELD_ORDER = ["typical_age", "materials", "links"]
 
 // Special field configurations
-const FIELD_CONFIG: Record<
-	string,
-	{ label: string; fullWidth?: boolean }
-> = {
-	typical_age: { label: "Ages" },
+const FIELD_CONFIG: Record<string, { label: string; fullWidth?: boolean }> = {
+	links: { fullWidth: true, label: "References" },
 	materials: { label: "Materials" },
-	links: { label: "References", fullWidth: true },
+	typical_age: { label: "Ages" },
 }
 
 function humanizeKey(key: string): string {
-	return key
-		.replace(/_/g, " ")
-		.replace(/\b\w/g, (c) => c.toUpperCase())
+	return key.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
 }
 
 function LinksList({ links }: { links: string[] }) {
 	return (
 		<ul className="space-y-2">
-			{links.map((url, index) => (
-				<li key={index} className="flex items-center gap-2 text-sm">
+			{links.map((url) => (
+				<li
+					key={url}
+					className="flex items-center gap-2 text-sm"
+				>
 					<ExternalLink
 						className="w-4 h-4 shrink-0 text-muted-foreground"
 						aria-hidden="true"

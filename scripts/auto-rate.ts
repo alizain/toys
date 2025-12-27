@@ -97,12 +97,7 @@ interface PreparedBatch {
 
 // Call prepare-dimension.ts and parse output
 function getPreparedBatch(limit: number, dimension?: string): PreparedBatch {
-	const args = [
-		"tsx",
-		"packages/toys/scripts/prepare-dimension.ts",
-		"-l",
-		String(limit),
-	]
+	const args = ["tsx", "packages/toys/scripts/prepare-dimension.ts", "-l", String(limit)]
 	if (dimension) {
 		args.push("-d", dimension)
 	}
@@ -138,14 +133,11 @@ function getToyBySlug(toys: ToyInfo[], slug: string): ToyInfo {
 function buildPrompt(dimension: DimensionInfo, toyA: ToyInfo, toyB: ToyInfo): string {
 	const scoringGuideText = dimension.scoringGuide
 		.map(
-			(sg: { score: number; description: string }) =>
-				`- ${sg.score}: ${sg.description}`,
+			(sg: { score: number; description: string }) => `- ${sg.score}: ${sg.description}`,
 		)
 		.join("\n")
 
-	const keyQuestionsText = dimension.keyQuestions
-		.map((q: string) => `- ${q}`)
-		.join("\n")
+	const keyQuestionsText = dimension.keyQuestions.map((q: string) => `- ${q}`).join("\n")
 
 	return `# Toy Comparison: ${dimension.label}
 
@@ -194,14 +186,7 @@ async function runClaude(
 	model: string | null,
 ): Promise<{ winner: "a" | "b" | "tie" }> {
 	return new Promise((resolve, reject) => {
-		const args = [
-			"-p",
-			"--output-format",
-			"json",
-			"--json-schema",
-			JSON_SCHEMA,
-			prompt,
-		]
+		const args = ["-p", "--output-format", "json", "--json-schema", JSON_SCHEMA, prompt]
 		if (model) {
 			args.unshift("--model", model)
 		}
@@ -269,9 +254,7 @@ async function runClaude(
 				resolve(result)
 			} catch (error) {
 				reject(
-					new Error(
-						`Failed to parse Claude response: ${error}\nRaw output: ${stdout}`,
-					),
+					new Error(`Failed to parse Claude response: ${error}\nRaw output: ${stdout}`),
 				)
 			}
 		})
@@ -383,11 +366,7 @@ async function runCodex(
 				try {
 					fs.unlinkSync(outputPath)
 				} catch {}
-				reject(
-					new Error(
-						`Failed to parse Codex response: ${error}\nstdout: ${stdout}`,
-					),
-				)
+				reject(new Error(`Failed to parse Codex response: ${error}\nstdout: ${stdout}`))
 			}
 		})
 	})
@@ -426,9 +405,7 @@ async function processComparison(
 	const dimension = batch.selectedDimension
 
 	if (verbose) {
-		console.log(
-			`\n--- Comparing: ${toyA.name} vs ${toyB.name} (${dimension.key}) ---\n`,
-		)
+		console.log(`\n--- Comparing: ${toyA.name} vs ${toyB.name} (${dimension.key}) ---\n`)
 	}
 
 	const prompt = buildPrompt(dimension, toyA, toyB)
@@ -503,9 +480,7 @@ async function main() {
 			`\nSelected: ${batch.selectedDimension.key} (${batch.selectedDimension.label})`,
 		)
 		console.log(`Pairs in batch: ${batch.stats.pairsInBatch}`)
-		console.log(
-			`Unique toys: ${batch.stats.uniqueToysInBatch}/${batch.stats.totalToys}`,
-		)
+		console.log(`Unique toys: ${batch.stats.uniqueToysInBatch}/${batch.stats.totalToys}`)
 		console.log(
 			`Connectivity: ${batch.connectivity.phaseCounts.bridgePairs} bridge, ` +
 				`${batch.connectivity.phaseCounts.strengthenPairs} strengthen, ` +

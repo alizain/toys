@@ -91,9 +91,7 @@ export function findArticulationPoints(graph: AdjacencyList): string[] {
 				const lowV = low.get(v)
 				const discU = disc.get(u)
 				if (lowU === undefined || lowV === undefined || discU === undefined) {
-					throw new Error(
-						"Missing low-link data while computing articulation points.",
-					)
+					throw new Error("Missing low-link data while computing articulation points.")
 				}
 				low.set(u, Math.min(lowU, lowV))
 
@@ -107,9 +105,7 @@ export function findArticulationPoints(graph: AdjacencyList): string[] {
 				const lowU = low.get(u)
 				const discV = disc.get(v)
 				if (lowU === undefined || discV === undefined) {
-					throw new Error(
-						"Missing traversal data while computing articulation points.",
-					)
+					throw new Error("Missing traversal data while computing articulation points.")
 				}
 				low.set(u, Math.min(lowU, discV))
 			}

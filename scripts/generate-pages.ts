@@ -66,8 +66,7 @@ function loadToys(): ToyInfo[] {
 	const toyFolders = fs.readdirSync(toysFolder).filter((f) => {
 		const toyPath = path.join(toysFolder, f)
 		return (
-			fs.statSync(toyPath).isDirectory() &&
-			fs.existsSync(path.join(toyPath, "index.md"))
+			fs.statSync(toyPath).isDirectory() && fs.existsSync(path.join(toyPath, "index.md"))
 		)
 	})
 
@@ -222,9 +221,7 @@ async function runCodex(
 				try {
 					fs.unlinkSync(outputPath)
 				} catch {}
-				reject(
-					new Error(`Failed to read Codex output: ${error}\nstdout: ${stdout}`),
-				)
+				reject(new Error(`Failed to read Codex output: ${error}\nstdout: ${stdout}`))
 			}
 		})
 	})
@@ -326,7 +323,8 @@ async function main() {
 		? null
 		: new cliProgress.SingleBar(
 				{
-					format: "Generating [{bar}] {percentage}% | {value}/{total} | {rate}/sec | ETA: {eta_formatted}",
+					format:
+						"Generating [{bar}] {percentage}% | {value}/{total} | {rate}/sec | ETA: {eta_formatted}",
 					hideCursor: true,
 				},
 				cliProgress.Presets.shades_classic,

@@ -71,11 +71,7 @@ function configureSvgrWebpack(config: Configuration): Configuration {
 		return false
 	})
 
-	if (
-		fileLoaderRule &&
-		typeof fileLoaderRule === "object" &&
-		"test" in fileLoaderRule
-	) {
+	if (fileLoaderRule && typeof fileLoaderRule === "object" && "test" in fileLoaderRule) {
 		const resourceQuery = fileLoaderRule.resourceQuery
 		const not =
 			resourceQuery &&

@@ -130,9 +130,7 @@ function computeAveragePathLength(graph: Map<string, Set<string>>): number {
 			index += 1
 			const currentDist = distances.get(current)
 			if (currentDist === undefined) {
-				throw new Error(
-					"Missing distance data while computing average path length.",
-				)
+				throw new Error("Missing distance data while computing average path length.")
 			}
 
 			for (const neighbor of graph.get(current) ?? []) {
@@ -231,17 +229,13 @@ async function main() {
 			console.log(`   ✅ Graph is fully connected!`)
 		} else if (components.length > 1) {
 			console.log(`   ⚠️  Graph has ${components.length} isolated clusters`)
-			console.log(
-				`   Component sizes: ${components.map((c) => c.length).join(", ")}`,
-			)
+			console.log(`   Component sizes: ${components.map((c) => c.length).join(", ")}`)
 
 			// Show small components
 			for (let i = 0; i < components.length; i++) {
 				const comp = components[i]
 				if (comp.length <= 10) {
-					console.log(
-						`   Component ${i + 1} (${comp.length} toys): ${comp.join(", ")}`,
-					)
+					console.log(`   Component ${i + 1} (${comp.length} toys): ${comp.join(", ")}`)
 				} else {
 					console.log(
 						`   Component ${i + 1} (${comp.length} toys): ${comp.slice(0, 5).join(", ")}... and ${comp.length - 5} more`,
@@ -268,9 +262,7 @@ async function main() {
 
 			// Articulation points
 			const articulationPoints = findArticulationPoints(mainGraph)
-			console.log(
-				`\n🌉 Articulation Points (bridges): ${articulationPoints.length}`,
-			)
+			console.log(`\n🌉 Articulation Points (bridges): ${articulationPoints.length}`)
 			if (articulationPoints.length > 0) {
 				console.log(`   ⚠️  Removing these toys would disconnect the graph:`)
 				// Show up to 10 articulation points with their degree
@@ -311,9 +303,7 @@ async function main() {
 			const avgDegree = degrees.reduce((a, b) => a + b, 0) / degrees.length
 
 			console.log(`\n📈 Degree Distribution (comparisons per toy):`)
-			console.log(
-				`   Min: ${minDegree}, Max: ${maxDegree}, Avg: ${avgDegree.toFixed(1)}`,
-			)
+			console.log(`   Min: ${minDegree}, Max: ${maxDegree}, Avg: ${avgDegree.toFixed(1)}`)
 
 			// Show toys with lowest degree (most isolated within component)
 			const lowDegree = Array.from(mainGraph.entries())

@@ -2,6 +2,7 @@ import { ArrowLeft, ExternalLink } from "lucide-react"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import Markdown from "react-markdown"
+import { FrontmatterDisplay } from "@/components/frontmatter-display"
 import { RatingBar } from "@/components/rating-bar"
 import { ToyComparisonHistory } from "@/components/toy-comparison-history"
 import { cn } from "@/lib/cn"
@@ -114,6 +115,9 @@ export default async function ToyPage({ params }: PageProps) {
 						</div>
 					)}
 				</div>
+
+				{/* Frontmatter metadata */}
+				<FrontmatterDisplay frontmatter={toy.frontmatter} />
 
 				{/* Ratings */}
 				{rating && (

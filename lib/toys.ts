@@ -39,6 +39,7 @@ export interface Toy {
 	content: string
 	rating: ToyRating | null
 	version: number | null
+	frontmatter: Record<string, unknown>
 }
 
 /**
@@ -120,6 +121,7 @@ export async function getToys(): Promise<Toy[]> {
 				const { data, content } = matter(fileContent)
 				return {
 					content: content.trim(),
+					frontmatter: data,
 					link: data.link || null,
 					name: data.name || slug,
 					rating,
@@ -156,6 +158,7 @@ export async function getToys(): Promise<Toy[]> {
 
 				return {
 					content: lines.slice(contentStart).join("\n").trim(),
+					frontmatter: { name, link, version },
 					link,
 					name,
 					rating,

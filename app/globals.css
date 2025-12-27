@@ -1,0 +1,110 @@
+/* biome-ignore-all lint/complexity/noImportantStyles: Required for accessibility - must override all animations */
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+	--font-heading: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+	--font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+	--font-mono: var(--font-mono), ui-monospace, monospace;
+
+	--animate-slide-up: slide-up 0.5s ease-out both;
+	--animate-fade-in: fade-in 0.4s ease-out both;
+
+	@keyframes slide-up {
+		from {
+			opacity: 0;
+			transform: translateY(16px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	--radius-sm: calc(var(--radius) - 4px);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) + 4px);
+	--radius-2xl: calc(var(--radius) + 8px);
+
+	--color-ring: var(--ring);
+	--color-border: var(--border);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-accent: var(--accent);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-muted: var(--muted);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-secondary: var(--secondary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-primary: var(--primary);
+	--color-card-foreground: var(--card-foreground);
+	--color-card: var(--card);
+	--color-foreground: var(--foreground);
+	--color-background: var(--background);
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-heading);
+}
+
+/* biome-ignore-all lint/complexity/noImportantStyles: Required for accessibility - must override all animations */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+:root {
+	--radius: 0.75rem;
+	--background: oklch(0.98 0.005 85);
+	--foreground: oklch(0.25 0.02 260);
+	--card: oklch(1 0 0);
+	--card-foreground: oklch(0.25 0.02 260);
+	--primary: oklch(0.55 0.2 280);
+	--primary-foreground: oklch(0.98 0.005 280);
+	--secondary: oklch(0.95 0.02 280);
+	--secondary-foreground: oklch(0.35 0.05 280);
+	--muted: oklch(0.94 0.01 260);
+	--muted-foreground: oklch(0.5 0.02 260);
+	--accent: oklch(0.92 0.03 280);
+	--accent-foreground: oklch(0.35 0.05 280);
+	--border: oklch(0.9 0.01 260);
+	--ring: oklch(0.55 0.2 280);
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+	body {
+		@apply bg-background text-foreground;
+	}
+}

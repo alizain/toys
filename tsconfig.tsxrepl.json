@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"paths": {
+			"@/*": ["./*"],
+			"server-only": ["./_tsxrepl/server-only"]
+		}
+	},
+	"extends": "./tsconfig.json"
+}

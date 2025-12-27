@@ -1,0 +1,9 @@
+services:
+  claude:
+    build: .
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./toys:/workspace/toys
+      - ./public:/workspace/public
+    working_dir: /workspace

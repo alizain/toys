@@ -1,5 +1,6 @@
 import { Brush, Clock, Sparkles, Trophy } from "lucide-react"
 import Link from "next/link"
+import { SiteHeader } from "@/components/site-header"
 import { ToysExplorer } from "@/components/toys-explorer"
 import { ratingStats } from "@/lib/elo"
 import { getToys } from "@/lib/toys"
@@ -18,22 +19,27 @@ export default async function HomePage() {
 	}
 
 	return (
-		<div className="min-h-screen">
-			{/* Hero */}
-			<header className="relative overflow-hidden bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-700 text-white">
-				<div className="relative max-w-6xl mx-auto px-6 py-20">
+		<div className="min-h-screen bg-background">
+			{/* Hero with Header */}
+			<div className="relative overflow-hidden bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-700 text-white">
+				<SiteHeader />
+
+				<div className="max-w-6xl mx-auto px-6 pt-20 pb-16">
 					<div className="flex items-center gap-3 mb-4">
 						<Sparkles className="w-8 h-8 text-amber-300" />
 						<span className="text-amber-200 font-medium">Curated Collection</span>
 					</div>
+
 					<h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-4">
 						The Best Toys
 						<br />
 						<span className="text-amber-200">for Kids</span>
 					</h1>
+
 					<p className="text-xl text-purple-100 max-w-xl mb-4">
 						Every toy rated on 7 dimensions:
 					</p>
+
 					<ul className="list-disc list-inside space-y-1 mb-8 text-purple-100">
 						<li>
 							<Link
@@ -92,6 +98,7 @@ export default async function HomePage() {
 							</Link>
 						</li>
 					</ul>
+
 					<Link
 						href="/dimensions"
 						className="inline-flex items-center gap-2 text-amber-200 hover:text-white transition-colors mb-8"
@@ -125,7 +132,7 @@ export default async function HomePage() {
 						</div>
 					</div>
 				</div>
-			</header>
+			</div>
 
 			{/* Rating Legend */}
 			<div className="max-w-6xl mx-auto px-6 py-8">
@@ -150,7 +157,7 @@ export default async function HomePage() {
 			</div>
 
 			{/* Toys Grid */}
-			<main className="max-w-6xl mx-auto px-6 pb-20">
+			<main id="toys" className="max-w-6xl mx-auto px-6 pb-20 scroll-mt-8">
 				{toys.length === 0 ? (
 					<div className="text-center py-20">
 						<p className="text-muted-foreground text-lg">
